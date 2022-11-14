@@ -25,7 +25,7 @@ while(True):
     #獲取鏡頭畫面
     ret, frame = cap.read()
     faces = facecascde.detectMultiScale(frame,2,3) #辨識人臉
-    img = frame
+    img = frame#每一幀都定義為圖片提供檢測
     gray = cv2.cvtColor(img,cv2.COLOR_BGR2GRAY) #轉為灰圖
     for(x,y,w,h) in faces:    
          ids, confidence = recogizer.predict(gray[y:y + h, x:x + w])
@@ -34,7 +34,7 @@ while(True):
          if confidence < 50 :
              #當評分小於50,代表檢測的人的可信,將名子打印到方框上
              img = cv2.rectangle(img,(x,y),(x+w, y+h),(0,225,0),2) #檢測方框
-             cv2.putText(img,str("anson"), (x+10, y-10), cv2.FONT_HERSHEY_DUPLEX,0.75,(0,225,0),1)
+             cv2.putText(img,str("anson"), (x+10, y-10), cv2.FONT_HERSHEY_DUPLEX,0.75,(0,225,0),1)#打印人名
          elif confidence1 < 60 :
              #當評分小於60,代表檢測的人的可信,將名子打印到方框上
              img = cv2.rectangle(img,(x,y),(x+w, y+h),(0,225,0),2) #檢測方框
